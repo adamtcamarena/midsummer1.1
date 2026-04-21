@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Midsummer Night's Dream — Act I, Scene i</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --brand:#0a6640;--brand-light:#e8f5ee;--brand-mid:#1a8a55;
+  --ink:#1c1c1e;--muted:#6e6e73;--soft:#f5f5f7;--border:#d2d2d7;
+  --white:#fff;--card-r:8px;
+  --blue:#0066cc;--blue-light:#e5f0ff;
+  --amber:#7a4f00;--amber-light:#fff3e0;
+  --red:#c0392b;--red-light:#fdecea;
+  --green:#1a6e35;--green-light:#e9f7ef;
+}
+html,body{height:100%;font-family:'Inter',sans-serif;background:#f0f0f2;color:#1c1c1e;font-size:15px;line-height:1.6;}
+.shell{display:flex;min-height:100vh;max-width:1100px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(0,0,0,0.08);}
+
+/* ── SIDEBAR ── */
+.sidebar{width:260px;flex-shrink:0;background:#1c1c1e;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-logo{padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.sidebar-course{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;}
+.sidebar-title{font-size:13px;font-weight:500;color:rgba(255,255,255,0.9);line-height:1.45;}
+.sidebar-nav{padding:14px 0;flex:1;}
+.nav-section{padding:10px 20px 4px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;cursor:pointer;transition:background 0.15s;border-left:2px solid transparent;}
+.nav-item:hover{background:rgba(255,255,255,0.05);}
+.nav-item.active{background:rgba(255,255,255,0.08);border-left-color:var(--brand-mid);}
+.nav-dot{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,0.4);flex-shrink:0;transition:all 0.2s;}
+.nav-dot.done{background:var(--brand-mid);border-color:var(--brand-mid);color:#fff;}
+.nav-dot.active{border-color:var(--brand-mid);color:var(--brand-mid);}
+.nav-label{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.35;}
+.nav-item.active .nav-label{color:#fff;}
+.progress-wrap{padding:18px 20px;border-top:1px solid rgba(255,255,255,0.08);}
+.progress-label{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:7px;}
+.progress-bar{height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--brand-mid);border-radius:2px;transition:width 0.4s ease;}
+.progress-pct{font-size:11px;color:rgba(255,255,255,0.4);margin-top:5px;}
+
+/* ── MAIN ── */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;overflow-y:auto;height:100vh;}
+.lesson-hero{background:var(--brand);padding:44px 52px 40px;color:#fff;flex-shrink:0;}
+.lesson-eyebrow{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:8px;}
+.lesson-title{font-family:'Lora',serif;font-size:30px;font-weight:600;line-height:1.2;margin-bottom:8px;}
+.lesson-meta{font-size:13px;color:rgba(255,255,255,0.6);}
+.blocks{padding:0 52px 52px;flex:1;}
+.block{margin-top:32px;}
+
+/* text */
+.block-text{font-size:15px;line-height:1.8;color:#1c1c1e;}
+.block-text p{margin-bottom:1em;}
+.block-text p:last-child{margin-bottom:0;}
+
+/* section header */
+.block-section-header{padding:24px 0 4px;border-top:2px solid var(--brand);margin-top:40px;}
+.block-section-header .sh-eyebrow{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);margin-bottom:4px;}
+.block-section-header .sh-title{font-family:'Lora',serif;font-size:21px;font-weight:600;color:#1c1c1e;}
+
+/* callout */
+.block-callout{border-left:3px solid var(--brand);background:var(--brand-light);border-radius:0 var(--card-r) var(--card-r) 0;padding:16px 20px;}
+.block-callout .callout-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--brand);font-weight:600;margin-bottom:6px;}
+.block-callout .callout-text{font-size:14px;line-height:1.7;color:#0a3d25;}
+
+/* quote */
+.block-quote{font-family:'Lora',serif;font-style:italic;font-size:14px;line-height:2.1;background:#fafaf8;border:1px solid var(--border);border-radius:var(--card-r);padding:22px 26px;white-space:pre-line;color:#1c1c1e;}
+.block-quote .quote-attr{font-family:'Inter',sans-serif;font-style:normal;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#6e6e73;margin-top:14px;}
+
+/* char grid */
+.char-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px;}
+.char-card{border:1px solid var(--border);border-radius:var(--card-r);padding:14px;background:var(--soft);}
+.char-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;margin-bottom:9px;}
+.char-name{font-size:13px;font-weight:600;margin-bottom:2px;}
+.char-role{font-size:11px;color:#6e6e73;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;}
+.char-desc{font-size:12px;line-height:1.55;color:#1c1c1e;}
+
+/* knowledge check */
+.kc-block{background:var(--soft);border:1px solid var(--border);border-radius:var(--card-r);padding:22px;}
+.kc-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:10px;}
+.kc-q{font-size:15px;font-weight:500;margin-bottom:16px;line-height:1.55;color:#1c1c1e;}
+.kc-choices{display:flex;flex-direction:column;gap:8px;}
+.kc-opt{background:#fff;border:1px solid var(--border);border-radius:6px;padding:11px 14px;font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:#1c1c1e;cursor:pointer;text-align:left;transition:all 0.15s;line-height:1.5;}
+.kc-opt:hover:not([disabled]){border-color:var(--brand);background:var(--brand-light);}
+.kc-opt.incorrect{border-color:var(--red);background:var(--red-light);color:#c0392b;}
+.kc-opt.correct{border-color:var(--green);background:var(--green-light);color:#1a6e35;cursor:default;}
+.kc-opt[disabled]{cursor:default;}
+.kc-feedback{border-radius:6px;padding:12px 14px;font-size:13px;line-height:1.65;margin-top:10px;display:none;color:#1c1c1e;}
+.kc-feedback.show{display:block;}
+.kc-feedback.incorrect-fb{background:var(--red-light);border:1px solid #f5c6c6;color:#c0392b;}
+.kc-feedback.correct-fb{background:var(--green-light);border:1px solid #a8d4b0;color:#1a6e35;}
+
+/* reflect / mono */
+.reflect-block{background:var(--soft);border:1px solid var(--border);border-radius:var(--card-r);padding:22px;}
+.reflect-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:10px;}
+.reflect-q{font-size:15px;font-weight:500;margin-bottom:6px;line-height:1.55;color:#1c1c1e;}
+.reflect-hint{font-size:12px;color:#6e6e73;font-style:italic;margin-bottom:14px;line-height:1.55;}
+.mono-lines{font-family:'Lora',serif;font-style:italic;font-size:14px;line-height:2;background:#fafaf8;border:1px solid var(--border);border-radius:6px;padding:14px 18px;margin-bottom:14px;color:#1c1c1e;}
+textarea{width:100%;border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:14px;font-family:'Inter',sans-serif;color:#1c1c1e;background:#fff;resize:vertical;min-height:90px;outline:none;transition:border 0.15s;}
+textarea:focus{border-color:var(--brand);}
+textarea:disabled{opacity:0.65;background:var(--soft);}
+.ai-feedback{border-radius:6px;padding:13px 16px;font-size:13px;line-height:1.7;margin-top:10px;background:var(--blue-light);border:1px solid #b3d1ff;color:#003d99;display:none;}
+.ai-feedback.show{display:block;}
+
+/* info banner */
+.info-banner{background:var(--amber-light);border:1px solid #f5c842;border-radius:var(--card-r);padding:14px 18px;font-size:13px;color:#7a4f00;line-height:1.65;}
+
+/* buttons */
+.btn{padding:10px 22px;border-radius:6px;font-size:14px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.15s;border:none;}
+.btn-primary{background:var(--brand);color:#fff;}
+.btn-primary:hover{background:var(--brand-mid);}
+.btn-secondary{background:transparent;color:#1c1c1e;border:1px solid var(--border);}
+.btn-secondary:hover{background:var(--soft);}
+.btn-ghost{background:transparent;color:var(--brand);border:1.5px solid var(--brand);font-size:14px;font-weight:500;cursor:pointer;padding:10px 22px;border-radius:6px;transition:all 0.15s;font-family:'Inter',sans-serif;}
+.btn-ghost:hover{background:var(--brand-light);}
+.btn:disabled{opacity:0.4;cursor:default;}
+
+/* lesson nav */
+.lesson-nav{padding:22px 52px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:#fff;flex-shrink:0;}
+
+/* notes */
+.notes-wrap{background:var(--soft);border:1px solid var(--border);border-radius:var(--card-r);padding:22px;}
+.copy-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
+.copy-bar-label{font-size:13px;color:#6e6e73;line-height:1.55;}
+.copy-confirm{font-size:12px;color:var(--green);font-weight:500;opacity:0;transition:opacity 0.3s;margin-right:10px;}
+.copy-confirm.show{opacity:1;}
+.note-entry{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.note-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.note-char-tag{display:inline-block;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:2px 9px;border-radius:10px;margin-bottom:5px;}
+.note-tag-Egeus{background:#ede7f6;color:#4a148c;}
+.note-tag-Hermia{background:#fce4ec;color:#880e4f;}
+.note-tag-Helena{background:#e0f2f1;color:#004d40;}
+.note-q{font-size:12px;color:#6e6e73;margin-bottom:4px;}
+.note-response{font-size:14px;color:#1c1c1e;line-height:1.65;font-style:italic;}
+.empty-notes{color:#6e6e73;font-size:14px;font-style:italic;}
+
+/* submit callout */
+.submit-callout{background:var(--brand-light);border:1px solid #a8d4be;border-radius:var(--card-r);padding:18px 22px;margin-top:24px;}
+.submit-callout .sc-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--brand);font-weight:600;margin-bottom:7px;}
+.submit-callout .sc-text{font-size:14px;line-height:1.7;color:#0a3d25;}
+
+/* responsive */
+@media(max-width:720px){
+  .sidebar{width:220px;}
+  .blocks,.lesson-hero,.lesson-nav{padding-left:28px;padding-right:28px;}
+}
+@media(max-width:560px){
+  .shell{flex-direction:column;}
+  .sidebar{width:100%;height:auto;position:relative;}
+  .main{height:auto;overflow-y:visible;}
+  .lesson-hero{padding:28px 20px;}
+  .blocks,.lesson-nav{padding-left:20px;padding-right:20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-course">ELA Professional Development</div>
+    <div class="sidebar-title">A Midsummer Night's Dream — Act I, Scene i</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Lessons</div>
+    <div class="nav-item" id="nav-0" onclick="goLesson(0)"><div class="nav-dot" id="nd-0">1</div><div class="nav-label">Introduction &amp; Characters</div></div>
+    <div class="nav-item" id="nav-1" onclick="goLesson(1)"><div class="nav-dot" id="nd-1">2</div><div class="nav-label">Plot &amp; Inciting Incident</div></div>
+    <div class="nav-item" id="nav-2" onclick="goLesson(2)"><div class="nav-dot" id="nd-2">3</div><div class="nav-label">Egeus's Complaint</div></div>
+    <div class="nav-item" id="nav-3" onclick="goLesson(3)"><div class="nav-dot" id="nd-3">4</div><div class="nav-label">Hermia's Defiance</div></div>
+    <div class="nav-item" id="nav-4" onclick="goLesson(4)"><div class="nav-dot" id="nd-4">5</div><div class="nav-label">Helena's Soliloquy</div></div>
+    <div class="nav-item" id="nav-5" onclick="goLesson(5)"><div class="nav-dot" id="nd-5">6</div><div class="nav-label">Character Analysis Notes</div></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label">Course progress</div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="progress-pct" id="prog-pct">0% complete</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="main-area">
+  <div id="lesson-hero"></div>
+  <div class="blocks" id="lesson-blocks"></div>
+  <div class="lesson-nav" id="lesson-nav"></div>
+</div>
+
+</div>
+
+<script>
+const studentNotes={};
+const kcDone={};
+const lessonVisited=[false,false,false,false,false,false];
+let currentLesson=0;
+
+const chars=[
+  {name:"Egeus",role:"Hermia's father",init:"E",bg:"#ede7f6",fg:"#4a148c",desc:"Authoritarian patriarch who invokes Athenian law to force his daughter to marry Demetrius. Treats Hermia as property."},
+  {name:"Hermia",role:"Egeus's daughter",init:"H",bg:"#fce4ec",fg:"#880e4f",desc:"Refuses to marry Demetrius despite legal threat. In love with Lysander and willing to risk everything for that love."},
+  {name:"Lysander",role:"Hermia's suitor",init:"L",bg:"#e3f2fd",fg:"#0d47a1",desc:"Loves Hermia and challenges Athenian law. Proposes they flee to elope outside Athens's jurisdiction."},
+  {name:"Theseus",role:"Duke of Athens",init:"T",bg:"#e8f5e9",fg:"#1b5e20",desc:"Upholds Athenian law but grants Hermia until the new moon to decide. Impartial but constrained by custom."},
+  {name:"Demetrius",role:"The approved suitor",init:"D",bg:"#fff8e1",fg:"#7a4f00",desc:"Has Egeus's blessing to marry Hermia, though he once pledged love to Helena and abandoned her."},
+  {name:"Helena",role:"Hermia's friend",init:"Ha",bg:"#e0f2f1",fg:"#004d40",desc:"Deeply in love with Demetrius, who rejects her. Decides to reveal Hermia's escape plan hoping to win him back."},
+];
+
+const noteOrder=[
+  {key:'helena_motivation',char:'Helena',label:"Helena's motivation for betraying Hermia"},
+  {key:'egeus_emotion',char:'Egeus',label:'Emotional state & opening tone'},
+  {key:'egeus_accusation',char:'Egeus',label:'The bewitchment accusation'},
+  {key:'egeus_ownership',char:'Egeus',label:'"She is mine" — power & ownership'},
+  {key:'hermia_eyes',char:'Hermia',label:'Eyes vs. judgment — the central conflict'},
+  {key:'hermia_modesty',char:'Hermia',label:'Modesty, speech, and strategic self-presentation'},
+  {key:'hermia_conviction',char:'Hermia',label:'Soul, sovereignty, and self-determination'},
+  {key:'helena_love_blind',char:'Helena',label:"Love's blindness — wisdom or self-deception?"},
+  {key:'helena_transpose',char:'Helena',label:'Love transforming perceived value'},
+  {key:'helena_decision',char:'Helena',label:'Self-aware irrationality — the closing decision'},
+];
+
+const lessons=[
+  // ── LESSON 1 ──────────────────────────────────────────────
+  {
+    eyebrow:"Lesson 1 of 6",title:"Introduction & Characters",meta:"Reading · ~10 min",requiredKCs:[],
+    blocks:[
+      {type:"text",html:`<p>Act I, Scene i of <em>A Midsummer Night's Dream</em> is one of Shakespeare's most precisely constructed opening scenes. In fewer than 250 lines, he establishes the central conflict, introduces six major characters, sets up two parallel worlds (Athens and the forest), and poses the play's central question: <em>What is the relationship between law, love, and individual will?</em></p><p>This course guides you through the scene using the original text, plain-language summaries, and close-reading questions designed to surface character motivation and thematic depth.</p>`},
+      {type:"callout",label:"Learning Objectives",text:`By the end of this course, you will be able to:<br>1. Analyze character development within Act I, Scene i.<br>2. Describe the plot and identify the inciting incident for the lovers' conflict.<br>3. Dissect each character's monologue to understand motivation.`},
+      {type:"section-header",eyebrow:"Characters",title:"Who's in the Room?"},
+      {type:"text",html:`<p>Six characters drive the scene. Their relationships form a love quadrangle: Helena loves Demetrius, who loves Hermia, who loves Lysander. Egeus and Theseus hold institutional power over all of them.</p>`},
+      {type:"chars"},
+      {type:"callout",label:"Key Relationship",text:`Helena &rarr; Demetrius &rarr; Hermia &larr; Lysander. Two men want Hermia. One woman wants a man who wants her friend. And a father wants to legally control his daughter's future.`},
+    ]
+  },
+  // ── LESSON 2 ──────────────────────────────────────────────
+  {
+    eyebrow:"Lesson 2 of 6",title:"Plot & Inciting Incident",meta:"Knowledge Check · ~12 min",requiredKCs:["kc1","kc2"],
+    blocks:[
+      {type:"text",html:`<p>The scene opens not with a romantic encounter, but with a legal complaint. Egeus drags Hermia before the Duke of Athens to demand the law enforce his authority as her father. This confrontation — father, daughter, ruler, two rival suitors — is the inciting incident that sets the entire play in motion.</p>`},
+      {type:"callout",label:"Scene Summary",text:`Egeus accuses Lysander of "bewitching" Hermia with gifts and poems. He invokes Athenian law: as her father, he owns her, and demands she marry Demetrius or face death or life as a nun. Theseus gives her until his wedding day to decide. Privately, Hermia and Lysander plan to flee through the forest to elope. Hermia tells Helena — who immediately decides to reveal the plan to Demetrius, hoping he'll follow Hermia into the forest.`},
+      {type:"section-header",eyebrow:"Knowledge Check",title:"Plot Comprehension"},
+      {type:"kc",id:"kc1",q:"What legal ultimatum does Theseus present to Hermia?",
+        choices:["She must choose between Lysander and Demetrius in a public hearing","She must marry Demetrius, become a nun, or face death","She must leave Athens within the week","She must publicly renounce Lysander"],
+        correct:1,
+        cf:"Correct. Theseus offers three options: obey her father and marry Demetrius, take a vow of chastity and enter a convent, or face death. This ultimatum makes the stakes of the scene life-or-death.",
+        wf:"Not quite — try another option."},
+      {type:"kc",id:"kc2",q:"What is the inciting incident that drives the lovers out of Athens?",
+        choices:["Demetrius publicly humiliates Helena","Lysander challenges Demetrius to a duel","Egeus's legal complaint forces Hermia into an impossible choice","Theseus forbids all four lovers from meeting"],
+        correct:2,
+        cf:"Exactly. Egeus's formal complaint before Theseus is the inciting incident. It creates an impossible situation that Hermia and Lysander can only escape by leaving Athens entirely.",
+        wf:"Not quite — try another option."},
+      {type:"reflect",id:"r-helena",
+        q:"Why does Helena decide to reveal Hermia and Lysander's escape plan to Demetrius? What does this decision tell us about her character?",
+        hint:"Consider what Helena hopes to gain — and whether her plan is rational given Demetrius's behavior toward her.",
+        noteKey:"helena_motivation",noteChar:"Helena",noteLabel:"Helena's motivation for betraying Hermia"},
+    ]
+  },
+  // ── LESSON 3 ──────────────────────────────────────────────
+  {
+    eyebrow:"Lesson 3 of 6 · Monologue Analysis",title:"Egeus's Complaint",meta:"Lines 22–45 · Close Reading · ~15 min",requiredKCs:[],
+    blocks:[
+      {type:"section-header",eyebrow:"Monologue",title:"Egeus's Complaint (Lines 22–45)"},
+      {type:"callout",label:"Plain-Language Summary",text:`Egeus storms in furious. He points to Demetrius (approved) and Lysander (the threat). He accuses Lysander of using romantic gestures — poems, songs, bracelets of hair, rings, trinkets — to "bewitch" Hermia's mind. Then he invokes a stark legal claim: as her father, he owns her. He can dispose of her to Demetrius, or to death.`},
+      {type:"quote",attr:"Egeus — Lines 22–45",text:`Full of vexation come I, with complaint\nAgainst my child, my daughter Hermia.\nStand forth, Demetrius. My noble lord,\nThis man hath my consent to marry her.\nStand forth, Lysander. And, my gracious Duke,\nThis man hath bewitched the bosom of my child.\nThou, thou, Lysander, thou hast given her rhymes,\nAnd interchanged love-tokens with my child.\nThou hast by moonlight at her window sung\nWith feigning voice verses of feigning love,\nAnd stol'n the impression of her fantasy\nWith bracelets of thy hair, rings, gauds, conceits,\nKnacks, trifles, nosegays, posy rings —\nAs he hath bewitched the heart of my child,\nI beg the ancient privilege of Athens:\nAs she is mine, I may dispose of her;\nWhich shall be either to this gentleman\nOr to her death, according to our law\nImmediately provided in that case.`},
+      {type:"section-header",eyebrow:"Guided Analysis",title:"Close Reading"},
+      {type:"info-banner",text:`<strong>How to use this section:</strong> Each excerpt focuses on a specific moment in the speech. Read the lines, review the question and hint, then write your analysis. Submit each response to receive facilitator feedback.`},
+      {type:"mono-section",char:"Egeus",lines:`Full of vexation come I, with complaint / Against my child, my daughter Hermia.`,
+        q:"What is Egeus's emotional state as he enters? What specific word signals this — and why does it matter that he opens this way before a Duke?",
+        hint:"Look at 'vexation.' What does it communicate about his composure and his expectation of how authority should respond to him?",
+        noteKey:"egeus_emotion",noteChar:"Egeus",noteLabel:"Emotional state & opening tone"},
+      {type:"mono-section",char:"Egeus",lines:`This man hath bewitched the bosom of my child. / Thou hast given her rhymes... bracelets of thy hair, rings, gauds, conceits, knacks, trifles, nosegays, posy rings`,
+        q:"Egeus lists gifts most audiences would read as romantic. Why does he frame these as 'bewitchment'? What does this reveal about his worldview — and the gap between his perception and Hermia's?",
+        hint:"Think about what 'bewitch' implies legally and morally. How does this word choice protect Egeus's authority while denying Hermia any agency?",
+        noteKey:"egeus_accusation",noteChar:"Egeus",noteLabel:"The bewitchment accusation"},
+      {type:"mono-section",char:"Egeus",lines:`As she is mine, I may dispose of her`,
+        q:"This is the legal and moral core of Egeus's argument. What does the language of ownership reveal about how Athenian law constructs gender? How does this phrase set up the central tension between law and individual will?",
+        hint:"Notice Shakespeare doesn't give Egeus a villain's speech — he gives him a legal argument. Why might that be more unsettling?",
+        noteKey:"egeus_ownership",noteChar:"Egeus",noteLabel:'"She is mine" — power & ownership'},
+    ]
+  },
+  // ── LESSON 4 ──────────────────────────────────────────────
+  {
+    eyebrow:"Lesson 4 of 6 · Monologue Analysis",title:"Hermia's Defiance",meta:"Lines 65–78 · Close Reading · ~15 min",requiredKCs:[],
+    blocks:[
+      {type:"section-header",eyebrow:"Monologue",title:"Hermia's Defiance (Lines 65–78)"},
+      {type:"callout",label:"Plain-Language Summary",text:`Hermia respectfully but firmly tells Theseus she wishes her father could see Lysander through her eyes. When Theseus tells her to obey her father's judgment, she asks what the worst punishment is if she refuses. Told she faces death or a convent, Hermia doesn't flinch. She declares she would rather die or live without men than give her "sovereignty" — her self — to someone her soul rejects.`},
+      {type:"quote",attr:"Hermia — Lines 65–78",text:`I would my father looked but with my eyes.\nTHESEUS: Rather your eyes must with his judgment look.\nHERMIA: I do entreat your grace to pardon me.\nI know not by what power I am made bold,\nNor how it may concern my modesty\nIn such a presence here to plead my thoughts;\nBut I beseech your grace that I may know\nThe worst that may befall me in this case,\nIf I refuse to wed Demetrius.\nTHESEUS: Either to die the death, or to abjure\nForever the society of men.\nHERMIA: So will I grow, so live, so die, my lord,\nEre I will yield my virgin patent up\nUnto his lordship, whose unwished yoke\nMy soul consents not to give sovereignty.`},
+      {type:"section-header",eyebrow:"Guided Analysis",title:"Close Reading"},
+      {type:"info-banner",text:`<strong>How to use this section:</strong> Each excerpt focuses on a specific moment in the speech. Read the lines, review the question and hint, then write your analysis. Submit each response to receive facilitator feedback.`},
+      {type:"mono-section",char:"Hermia",lines:`I would my father looked but with my eyes.`,
+        q:"This single line is the philosophical heart of the scene. What is Hermia actually arguing — and how does Theseus's counter crystallize the conflict between personal experience and institutional authority?",
+        hint:"'Eyes' represents personal perception. 'Judgment' represents social law. What are the implications of Theseus siding with judgment over eyes?",
+        noteKey:"hermia_eyes",noteChar:"Hermia",noteLabel:"Eyes vs. judgment — the central conflict"},
+      {type:"mono-section",char:"Hermia",lines:`I know not by what power I am made bold, / Nor how it may concern my modesty / In such a presence here to plead my thoughts`,
+        q:"Hermia prefaces her defiance with an apology for speaking boldly. Is this genuine self-doubt, or is she using the language of modesty strategically to make her eventual stand more powerful?",
+        hint:"Why would a woman in this context need to apologize for having thoughts worth stating aloud? Does this diminish her defiance or complicate it?",
+        noteKey:"hermia_modesty",noteChar:"Hermia",noteLabel:"Modesty, speech, and strategic self-presentation"},
+      {type:"mono-section",char:"Hermia",lines:`So will I grow, so live, so die, my lord, / Ere I will yield my virgin patent up / Unto his lordship, whose unwished yoke / My soul consents not to give sovereignty.`,
+        q:"Hermia has just been told she may die. What specific words reveal the depth of her conviction — and how does the language of 'soul' and 'sovereignty' reframe the debate beyond romance?",
+        hint:"Hermia doesn't say 'I love Lysander too much.' She says her soul refuses. What does that distinction tell us about selfhood and consent?",
+        noteKey:"hermia_conviction",noteChar:"Hermia",noteLabel:"Soul, sovereignty, and self-determination"},
+    ]
+  },
+  // ── LESSON 5 ──────────────────────────────────────────────
+  {
+    eyebrow:"Lesson 5 of 6 · Monologue Analysis",title:"Helena's Closing Soliloquy",meta:"Lines 226–251 · Close Reading · ~15 min",requiredKCs:[],
+    blocks:[
+      {type:"section-header",eyebrow:"Monologue",title:"Helena's Closing Soliloquy (Lines 226–251)"},
+      {type:"callout",label:"Plain-Language Summary",text:`Helena is alone on stage for the first time. She reflects on the irrationality of love — she's as attractive as Hermia, but Demetrius is obsessed with Hermia anyway. She argues that love operates through the mind rather than the eyes, making people see worth in things that are "base and vile." Then she reveals her plan: tell Demetrius about the escape, hoping he'll chase Hermia into the forest — and she can follow.`},
+      {type:"quote",attr:"Helena — Lines 226–251",text:`How happy some o'er other some can be!\nThrough Athens I am thought as fair as she.\nBut what of that? Demetrius thinks not so;\nHe will not know what all but he do know.\nAnd as he errs, doting on Hermia's eyes,\nSo I, admiring of his qualities:\nThings base and vile, holding no quantity,\nLove can transpose to form and dignity.\nLove looks not with the eyes, but with the mind,\nAnd therefore is winged Cupid painted blind.\nNor hath Love's mind of any judgment taste;\nWings and no eyes figure unheedy haste.\nAnd therefore is Love said to be a child,\nBecause in choice he is so oft beguiled.\nFor, ere Demetrius looked on Hermia's eyne,\nHe hailed down oaths that he was only mine;\nAnd when this hail some heat from Hermia felt,\nSo he dissolved, and showers of oaths did melt.\nI will go tell him of fair Hermia's flight:\nThen to the wood will Demetrius go.`},
+      {type:"section-header",eyebrow:"Guided Analysis",title:"Close Reading"},
+      {type:"info-banner",text:`<strong>How to use this section:</strong> Each excerpt focuses on a specific moment in the speech. Read the lines, review the question and hint, then write your analysis. Submit each response to receive facilitator feedback.`},
+      {type:"mono-section",char:"Helena",lines:`Love looks not with the eyes, but with the mind, / And therefore is winged Cupid painted blind.`,
+        q:"How does Helena's own situation both prove and undermine this observation? Is she demonstrating wisdom here — or a painful lack of self-awareness?",
+        hint:"Helena accurately diagnoses love's irrationality — but she is herself irrational in her love for Demetrius. Does she recognize this? What effect does that tension create?",
+        noteKey:"helena_love_blind",noteChar:"Helena",noteLabel:"Love's blindness — wisdom or self-deception?"},
+      {type:"mono-section",char:"Helena",lines:`Things base and vile, holding no quantity, / Love can transpose to form and dignity.`,
+        q:"Helena argues love can make something worthless appear valuable. Who else in the scene might this apply to — and does it complicate your reading of Egeus, Demetrius, or Hermia's own love?",
+        hint:"Is Egeus's certainty that Demetrius is the right match a kind of love-blindness? Or is Helena's observation only meant to apply to romantic love?",
+        noteKey:"helena_transpose",noteChar:"Helena",noteLabel:"Love transforming perceived value"},
+      {type:"mono-section",char:"Helena",lines:`I will go tell him of fair Hermia's flight: / Then to the wood will Demetrius go.`,
+        q:"Helena has just delivered a sophisticated analysis of love's irrationality — and then immediately enacts exactly that irrationality. What does this closing decision suggest about self-knowledge in the face of desire?",
+        hint:"Does Helena understand that her plan is irrational? Does she care? What does it mean that she acts anyway?",
+        noteKey:"helena_decision",noteChar:"Helena",noteLabel:"Self-aware irrationality — the closing decision"},
+    ]
+  },
+  // ── LESSON 6 ──────────────────────────────────────────────
+  {
+    eyebrow:"Lesson 6 of 6",title:"Character Analysis Notes",meta:"Your Reference Document",requiredKCs:[],
+    blocks:[
+      {type:"text",html:`<p>Below are your compiled responses from the close-reading and reflection activities. Copy all notes and paste them into the Canvas assignment to submit your work for review.</p>`},
+      {type:"notes"},
+      {type:"submit-callout"},
+      {type:"callout",label:"What's Next",text:`As you continue reading, return to these notes. Ask yourself: do these characters develop beyond Act I? Does Helena's self-awareness grow? Does Egeus ever reckon with what he nearly did? Your Act I analysis is the foundation.`},
+    ]
+  }
+];
+
+// ── PROGRESS ─────────────────────────────────────────────────
+function markVisited(i){lessonVisited[i]=true;refreshProgress();}
+function refreshProgress(){
+  const count=lessonVisited.filter(Boolean).length;
+  const pct=Math.round((count/6)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'% complete';
+}
+
+// ── SIDEBAR ───────────────────────────────────────────────────
+function updateSidebar(){
+  for(let i=0;i<6;i++){
+    const item=document.getElementById('nav-'+i);
+    const dot=document.getElementById('nd-'+i);
+    item.className='nav-item'+(i===currentLesson?' active':'');
+    if(lessonVisited[i]&&i!==currentLesson){dot.className='nav-dot done';dot.innerHTML='&#10003;';}
+    else if(i===currentLesson){dot.className='nav-dot active';dot.textContent=i+1;}
+    else{dot.className='nav-dot';dot.textContent=i+1;}
+  }
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────
+function goLesson(i){
+  currentLesson=i;markVisited(i);updateSidebar();renderLesson();
+  document.getElementById('main-area').scrollTop=0;
+}
+function nextLesson(){if(currentLesson<5)goLesson(currentLesson+1);}
+function prevLesson(){if(currentLesson>0)goLesson(currentLesson-1);}
+function canProceed(){return lessons[currentLesson].requiredKCs.every(k=>kcDone[k]);}
+
+function renderLessonNav(){
+  const isLast=currentLesson===5;
+  const ok=canProceed();
+  const needsKC=lessons[currentLesson].requiredKCs.length>0;
+  const hint=(!ok&&needsKC)?`<span style="font-size:12px;color:#6e6e73;">Answer both questions correctly to continue.</span>`:'';
+  document.getElementById('lesson-nav').innerHTML=`
+    <div>${currentLesson>0?`<button class="btn btn-secondary" onclick="prevLesson()">&#8592; Previous</button>`:''}</div>
+    <div style="display:flex;gap:12px;align-items:center;">
+      ${hint}
+      ${isLast?'':`<button class="btn btn-primary" id="continue-btn" onclick="nextLesson()" ${ok?'':'disabled'}>Continue &#8594;</button>`}
+    </div>`;
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function renderLesson(){
+  const l=lessons[currentLesson];
+  document.getElementById('lesson-hero').innerHTML=`
+    <div class="lesson-hero">
+      <div class="lesson-eyebrow">${l.eyebrow}</div>
+      <div class="lesson-title">${l.title}</div>
+      <div class="lesson-meta">${l.meta}</div>
+    </div>`;
+  let html='';
+  for(const b of l.blocks){
+    if(b.type==='text') html+=`<div class="block block-text">${b.html}</div>`;
+    else if(b.type==='callout') html+=`<div class="block block-callout"><div class="callout-label">${b.label}</div><div class="callout-text">${b.text}</div></div>`;
+    else if(b.type==='section-header') html+=`<div class="block block-section-header"><div class="sh-eyebrow">${b.eyebrow}</div><div class="sh-title">${b.title}</div></div>`;
+    else if(b.type==='quote') html+=`<div class="block block-quote">${b.text}<div class="quote-attr">${b.attr}</div></div>`;
+    else if(b.type==='info-banner') html+=`<div class="block info-banner">${b.text}</div>`;
+    else if(b.type==='chars') html+=renderChars();
+    else if(b.type==='kc') html+=renderKC(b);
+    else if(b.type==='reflect') html+=renderReflect(b);
+    else if(b.type==='mono-section') html+=renderMono(b);
+    else if(b.type==='notes') html+=renderNotes();
+    else if(b.type==='submit-callout') html+=renderSubmitCallout();
+  }
+  document.getElementById('lesson-blocks').innerHTML=html;
+  renderLessonNav();
+}
+
+function renderChars(){
+  return `<div class="block char-row">${chars.map(c=>`
+    <div class="char-card">
+      <div class="char-avatar" style="background:${c.bg};color:${c.fg}">${c.init}</div>
+      <div class="char-name" style="color:${c.fg}">${c.name}</div>
+      <div class="char-role">${c.role}</div>
+      <div class="char-desc">${c.desc}</div>
+    </div>`).join('')}</div>`;
+}
+
+// ── KC — retry until correct ──────────────────────────────────
+function renderKC(b){
+  const opts=b.choices.map((c,i)=>
+    `<button class="kc-opt" id="${b.id}-opt${i}" onclick="checkKC('${b.id}',${i},${b.correct},${b.choices.length},'${escQ(b.cf)}','${escQ(b.wf)}')">${c}</button>`
+  ).join('');
+  return `<div class="block kc-block"><div class="kc-label">Knowledge Check</div><div class="kc-q">${b.q}</div><div class="kc-choices">${opts}</div><div class="kc-feedback" id="${b.id}-fb"></div></div>`;
+}
+
+function checkKC(id,idx,correct,n,cf,wf){
+  for(let i=0;i<n;i++){
+    const opt=document.getElementById(id+'-opt'+i);
+    opt.classList.remove('incorrect');
+    opt.disabled=false;
+  }
+  const fb=document.getElementById(id+'-fb');
+  if(idx===correct){
+    for(let i=0;i<n;i++) document.getElementById(id+'-opt'+i).disabled=true;
+    document.getElementById(id+'-opt'+idx).classList.add('correct');
+    fb.className='kc-feedback show correct-fb';
+    fb.innerHTML='<strong>Correct.</strong> '+cf;
+    kcDone[id]=true;
+    const btn=document.getElementById('continue-btn');
+    if(btn) btn.disabled=!canProceed();
+    if(canProceed()){const hint=document.querySelector('#lesson-nav span');if(hint)hint.remove();}
+  } else {
+    document.getElementById(id+'-opt'+idx).classList.add('incorrect');
+    fb.className='kc-feedback show incorrect-fb';
+    fb.innerHTML='<strong>Not quite.</strong> '+wf;
+  }
+}
+
+// ── REFLECT ───────────────────────────────────────────────────
+function renderReflect(b){
+  return `<div class="block reflect-block">
+    <div class="reflect-label">Reflection</div>
+    <div class="reflect-q">${b.q}</div>
+    <div class="reflect-hint">${b.hint}</div>
+    <textarea id="${b.id}-ta" placeholder="Write your response here..."></textarea>
+    <div style="margin-top:10px;">
+      <button class="btn btn-primary" onclick="submitReflect('${b.id}','${b.noteKey}','${b.noteChar}','${escQ(b.noteLabel)}','${escQ(b.q)}')">Submit for Feedback</button>
+    </div>
+    <div class="ai-feedback" id="${b.id}-aifb"></div>
+  </div>`;
+}
+
+async function submitReflect(id,noteKey,noteChar,noteLabel,q){
+  const ta=document.getElementById(id+'-ta');
+  const val=ta.value.trim();if(!val)return;
+  studentNotes[noteKey]={char:noteChar,label:noteLabel,response:val};
+  const fb=document.getElementById(id+'-aifb');
+  fb.className='ai-feedback show';fb.textContent='Analyzing your response...';
+  ta.disabled=true;
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:`You are a collegial facilitator in a professional development course on A Midsummer Night's Dream for adult learners.\n\nReflection question: "${q}"\nLearner's response: "${val}"\n\nGive substantive, collegial feedback in 3-4 sentences. Affirm the strongest part of their thinking, then push the analysis further. Write as a professional peer. No bullet points. No hollow praise.`}]})
+    });
+    const data=await resp.json();
+    fb.innerHTML='<strong>Facilitator Feedback:</strong> '+data.content.map(b=>b.text||'').join('');
+  }catch(e){
+    fb.innerHTML='<strong>Facilitator Feedback:</strong> Your response engages the question thoughtfully. Consider how this decision connects to the play\'s broader concern with who gets to define value — of a person, a feeling, or a choice.';
+  }
+}
+
+// ── MONO ──────────────────────────────────────────────────────
+function renderMono(b){
+  const uid=b.noteKey;
+  return `<div class="block reflect-block">
+    <div class="reflect-label">${b.char} · Close Reading</div>
+    <div class="mono-lines">${b.lines}</div>
+    <div class="reflect-q">${b.q}</div>
+    <div class="reflect-hint">${b.hint}</div>
+    <textarea id="${uid}-ta" placeholder="Write your analysis here..."></textarea>
+    <div style="margin-top:10px;">
+      <button class="btn btn-primary" onclick="submitMono('${uid}','${b.char}','${escQ(b.noteLabel)}','${escQ(b.q)}','${escQ(b.lines)}')">Submit for Feedback</button>
+    </div>
+    <div class="ai-feedback" id="${uid}-aifb"></div>
+  </div>`;
+}
+
+async function submitMono(noteKey,noteChar,noteLabel,q,lines){
+  const ta=document.getElementById(noteKey+'-ta');
+  const val=ta.value.trim();if(!val)return;
+  studentNotes[noteKey]={char:noteChar,label:noteLabel,response:val};
+  const fb=document.getElementById(noteKey+'-aifb');
+  fb.className='ai-feedback show';fb.textContent='Analyzing your response...';
+  ta.disabled=true;
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:`You are a collegial facilitator in a professional development course on A Midsummer Night's Dream for adult learners.\n\nCharacter: ${noteChar}\nLines: "${lines}"\nClose-reading question: "${q}"\nLearner's response: "${val}"\n\nGive substantive, collegial feedback in 3-4 sentences. Affirm the strongest analytical move, then deepen it — push toward theme, dramatic function, or historical context. Write as a peer. Reference their specific language where possible. No bullet points.`}]})
+    });
+    const data=await resp.json();
+    fb.innerHTML='<strong>Facilitator Feedback:</strong> '+data.content.map(b=>b.text||'').join('');
+  }catch(e){
+    fb.innerHTML='<strong>Facilitator Feedback:</strong> Strong engagement with the text. Consider how this observation connects to the play\'s larger concerns with law, perception, and individual will.';
+  }
+}
+
+// ── NOTES & COPY ──────────────────────────────────────────────
+function buildPlainText(){
+  const filled=noteOrder.filter(n=>studentNotes[n.key]);
+  if(!filled.length)return'';
+  let out="A MIDSUMMER NIGHT'S DREAM \u2014 ACT I, SCENE i\nCharacter Analysis Notes\n"+'='.repeat(48)+'\n\n';
+  let lastChar='';
+  for(const n of filled){
+    const e=studentNotes[n.key];
+    if(e.char!==lastChar){out+=`[ ${e.char.toUpperCase()} ]\n\n`;lastChar=e.char;}
+    out+=`${n.label}\n${e.response}\n\n`;
+  }
+  return out.trim();
+}
+
+function copyNotes(){
+  const text=buildPlainText();if(!text)return;
+  const showConfirm=()=>{
+    const el=document.getElementById('copy-confirm');
+    if(el){el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(showConfirm).catch(()=>fallbackCopy(text,showConfirm));
+  } else {
+    fallbackCopy(text,showConfirm);
+  }
+}
+
+function fallbackCopy(text,cb){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+function renderNotes(){
+  const filled=noteOrder.filter(n=>studentNotes[n.key]);
+  const hasNotes=filled.length>0;
+  const entries=filled.map(n=>{
+    const e=studentNotes[n.key];
+    return `<div class="note-entry">
+      <span class="note-char-tag note-tag-${e.char}">${e.char}</span>
+      <div class="note-q">${n.label}</div>
+      <div class="note-response">"${e.response}"</div>
+    </div>`;
+  }).join('');
+  const copyBar=hasNotes?`
+    <div class="copy-bar">
+      <div class="copy-bar-label">${filled.length} of ${noteOrder.length} responses recorded.<br>Copy all notes, then paste into your Canvas assignment.</div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+        <span class="copy-confirm" id="copy-confirm">Copied!</span>
+        <button class="btn-ghost" onclick="copyNotes()">Copy all notes</button>
+      </div>
+    </div>`:'';
+  const body=hasNotes?entries:`<div class="empty-notes">No notes recorded yet. Complete the reflection and close-reading activities in Lessons 2&#8211;5 to populate your notes here.</div>`;
+  return `<div class="block notes-wrap">${copyBar}${body}</div>`;
+}
+
+function renderSubmitCallout(){
+  return `<div class="submit-callout">
+    <div class="sc-label">Next step &#8212; Canvas submission</div>
+    <div class="sc-text">Use the <strong>Copy all notes</strong> button above to copy your responses, then navigate to the <strong>Midsummer Night's Dream &#8212; Act I Analysis</strong> assignment in Canvas. Paste your notes into the text entry field and submit.</div>
+  </div>`;
+}
+
+function escQ(s){return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' ');}
+
+// ── INIT ──────────────────────────────────────────────────────
+goLesson(0);
+</script>
+</body>
+</html>
